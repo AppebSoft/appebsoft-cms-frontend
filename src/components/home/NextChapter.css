@@ -1,0 +1,772 @@
+/* ==========================================
+   NEXT CHAPTER / CONTACT CTA
+========================================== */
+
+
+.next-chapter {
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:#020059;
+
+    color:#ffffff;
+
+    padding:30px 8% 30px;
+
+}
+
+
+
+/* ==========================================
+   BACKGROUND GLOW
+========================================== */
+
+
+.next-chapter::before {
+
+    content:"";
+
+    position:absolute;
+
+    width:850px;
+
+    height:850px;
+
+    right:-320px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    border-radius:50%;
+
+    background:
+
+    radial-gradient(
+        circle,
+        rgba(98,189,236,.12),
+        transparent 70%
+    );
+
+    filter:blur(100px);
+
+}
+
+
+
+.next-chapter::after {
+
+    content:"";
+
+    position:absolute;
+
+    width:500px;
+
+    height:500px;
+
+    left:-180px;
+
+    bottom:-180px;
+
+    border-radius:50%;
+
+    background:
+
+    radial-gradient(
+        circle,
+        rgba(113,40,239,.1),
+        transparent 70%
+    );
+
+    filter:blur(90px);
+
+}
+
+
+
+/* ==========================================
+   BACKGROUND TEXT
+========================================== */
+
+
+.chapter-bg-text {
+
+    position:absolute;
+
+    top:70px;
+
+    right:-80px;
+
+    font-size:15vw;
+
+    font-weight:900;
+
+    color:rgba(255,255,255,.03);
+
+    user-select:none;
+
+    pointer-events:none;
+
+    white-space:nowrap;
+
+}
+
+
+
+/* ==========================================
+   CONTENT
+========================================== */
+
+
+.chapter-content {
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+
+
+.chapter-label {
+
+    color:#62bdec;
+
+    font-size:.75rem;
+
+    font-weight:600;
+
+    letter-spacing:6px;
+
+    text-transform:uppercase;
+
+}
+
+
+
+/* ==========================================
+   MAIN TITLE
+========================================== */
+
+
+.chapter-title {
+
+    display:flex;
+
+    flex-direction:column;
+
+    margin-top:20px;
+
+}
+
+
+
+.chapter-title span {
+
+    font-size:clamp(3rem,6vw,7rem);
+
+    line-height:.9;
+
+    font-weight:900;
+
+    letter-spacing:-3px;
+
+}
+
+
+
+/* ==========================================
+   DIVIDER
+========================================== */
+
+
+.chapter-line {
+
+    width:100%;
+
+    height:2px;
+
+    margin:45px 0;
+
+    background:
+
+    linear-gradient(
+        90deg,
+        #62bdec,
+        rgba(98,189,236,.25)
+    );
+
+}
+
+
+
+/* ==========================================
+   CONVERSATION
+========================================== */
+
+
+.chapter-conversation {
+
+    display:grid;
+
+    grid-template-columns:.9fr 1.1fr;
+
+    gap:80px;
+
+}
+
+
+
+/* ==========================================
+   LEFT CONTENT
+========================================== */
+
+
+.conversation-left span {
+
+    color:#62bdec;
+
+    font-size:.75rem;
+
+    font-weight:600;
+
+    letter-spacing:5px;
+
+    text-transform:uppercase;
+
+}
+
+
+
+.conversation-left h3 {
+
+    margin-top:20px;
+
+    font-size:clamp(2.5rem,4vw,5rem);
+
+    line-height:.95;
+
+}
+
+
+
+.conversation-left p {
+
+    margin-top:25px;
+
+    max-width:520px;
+
+    color:rgba(255,255,255,.72);
+
+    line-height:1.8;
+
+}
+
+
+
+/* ==========================================
+   FORM AREA
+========================================== */
+
+
+.conversation-right {
+
+    position:relative;
+
+}
+
+
+
+.form-bg {
+
+    position:absolute;
+
+    top:-60px;
+
+    left:-20px;
+
+    font-size:7rem;
+
+    font-weight:900;
+
+    color:rgba(255,255,255,.03);
+
+    pointer-events:none;
+
+}
+
+
+
+/* ==========================================
+   FORM
+========================================== */
+
+
+.premium-form {
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+
+
+.input-group {
+
+    margin-bottom:28px;
+
+}
+
+
+
+.input-group input,
+.input-group textarea {
+
+
+    width:100%;
+
+
+    padding:16px 0;
+
+
+    background:transparent;
+
+
+    border:none;
+
+
+    border-bottom:1px solid rgba(255,255,255,.12);
+
+
+    color:#ffffff;
+
+
+    font-size:1rem;
+
+
+    outline:none;
+
+
+    transition:.35s ease;
+
+}
+
+
+
+.input-group input:focus,
+.input-group textarea:focus {
+
+    border-color:#62bdec;
+
+}
+
+
+
+.input-group input::placeholder,
+.input-group textarea::placeholder {
+
+    color:rgba(255,255,255,.45);
+
+}
+
+
+
+.input-group textarea {
+
+    resize:none;
+
+}
+
+
+
+/* ==========================================
+   PROJECT TYPES
+========================================== */
+
+
+.project-types {
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+    margin-bottom:25px;
+
+}
+
+
+
+.type-pill {
+
+    padding:12px 20px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    color:#ffffff;
+
+    cursor:pointer;
+
+    transition:.35s ease;
+
+}
+
+
+
+.type-pill:hover {
+
+    background:#62bdec;
+
+    border-color:#62bdec;
+    color:#020059;
+
+    transform:translateY(-3px);
+
+}
+
+
+
+.type-pill.active {
+
+    background:#62bdec;
+
+    border-color:#62bdec;
+
+    color:#020059;
+
+}
+
+
+
+/* ==========================================
+   BUTTON
+========================================== */
+
+
+.submit-btn1 {
+
+
+    margin-top:10px;
+
+
+    padding:17px 38px;
+
+
+    border:none;
+
+
+    border-radius:999px;
+
+
+    background:#7128ef;
+
+
+    color:white;
+
+
+    font-weight:700;
+
+
+    letter-spacing:2px;
+
+
+    cursor:pointer;
+
+
+    transition:.35s ease;
+
+}
+
+
+
+.submit-btn1:hover {
+
+
+    transform:translateY(-5px);
+
+
+    background:#ffffff;
+    color:#7128ef;
+
+
+}
+
+
+
+/* ==========================================
+   TABLET
+========================================== */
+
+
+@media(max-width:1024px){
+
+
+.next-chapter{
+
+    padding:30px 7% 30px;
+
+}
+
+
+.chapter-title span{
+
+    font-size:5rem;
+
+}
+
+
+.chapter-conversation{
+
+    gap:50px;
+
+}
+
+
+}
+
+
+
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+
+@media(max-width:900px){
+
+
+.next-chapter{
+
+    padding:45px 6% 45px;
+
+}
+
+
+
+/* remove divider */
+
+.chapter-line{
+
+    display:none;
+
+}
+
+
+
+.chapter-bg-text{
+
+    top:40px;
+
+    right:-30px;
+
+    font-size:25vw;
+
+}
+
+
+
+.chapter-title span{
+
+    font-size:2.7rem;
+
+    line-height:1;
+
+    letter-spacing:-0.5px;
+
+    word-spacing:2px;
+
+}
+
+
+
+.chapter-conversation{
+
+    grid-template-columns:1fr;
+
+    gap:40px;
+
+}
+
+
+
+.conversation-left h3{
+
+    font-size:2.2rem;
+
+    line-height:1;
+
+}
+
+
+
+.conversation-left p{
+
+    margin-top:18px;
+
+}
+
+
+
+.form-bg{
+
+    top:-30px;
+
+    left:0;
+
+    font-size:4rem;
+
+}
+
+
+
+.project-types{
+
+    gap:8px;
+
+}
+
+
+
+.type-pill{
+
+    padding:10px 16px;
+
+    font-size:.85rem;
+
+}
+
+
+
+.submit-btn1{
+
+    width:100%;
+
+    padding:17px;
+
+}
+
+
+}
+
+
+
+
+
+/* ==========================================
+   SMALL MOBILE
+========================================== */
+
+
+@media(max-width:480px){
+
+
+.next-chapter{
+
+    padding:35px 20px 35px;
+
+}
+
+
+
+.chapter-title span{
+
+    font-size:2.25rem;
+
+    line-height:1.05;
+
+    letter-spacing:0;
+
+    word-spacing:1px;
+
+}
+
+
+
+.conversation-left h3{
+
+    font-size:1.9rem;
+
+    line-height:1.05;
+
+}
+
+
+
+.chapter-label{
+
+    letter-spacing:2px;
+
+}
+
+
+
+.chapter-bg-text{
+
+    font-size:28vw;
+
+}
+
+
+
+.form-bg{
+
+    font-size:3.5rem;
+
+}
+
+
+}
+
+
+/* ==========================================
+   SUCCESS STATE
+========================================== */
+
+.chapter-success {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 30px 0;
+}
+
+.chapter-success-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #62bdec, #7128ef);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #ffffff;
+}
+
+.chapter-success h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.3;
+}
+
+.chapter-success p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+/* disabled submit */
+.submit-btn1:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}

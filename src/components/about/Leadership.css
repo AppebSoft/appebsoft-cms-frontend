@@ -1,0 +1,188 @@
+/* ==========================================
+   LIFE AT APPEESOFT
+========================================== */
+
+.pld {
+  position: relative;
+  padding: 35px 8% 40px;
+  background: #020059;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+/* ==========================================
+   BACKGROUND GLOW
+========================================== */
+
+.pld::before {
+  content: "";
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  top: -220px;
+  right: -250px;
+  background: radial-gradient(circle, rgba(98,189,236,.12) 0%, transparent 70%);
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+.pld::after {
+  content: "";
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  left: -180px;
+  bottom: -180px;
+  background: radial-gradient(circle, rgba(113,40,239,.10) 0%, transparent 70%);
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.pld-header {
+  position: relative;
+  z-index: 2;
+  max-width: 850px;
+  margin: 0 auto 60px;
+  text-align: center;
+}
+
+.pld-header h2 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+
+.pld-header p {
+  color: rgba(255,255,255,.7);
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+/* ==========================================
+   GRID
+========================================== */
+
+.pld-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+/* ==========================================
+   CARD
+========================================== */
+
+.pld-card {
+  position: relative;
+  overflow: hidden;
+
+  padding: 36px;
+  border-radius: 22px;
+
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  transition: .4s ease;
+}
+
+.pld-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right,
+      rgba(98,189,236,.15),
+      transparent 70%);
+  opacity: 0;
+  transition: .4s;
+}
+
+.pld-card:hover::before {
+  opacity: 1;
+}
+
+.pld-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(98,189,236,.45);
+  box-shadow: 0 18px 45px rgba(98,189,236,.12);
+}
+
+.pld-card h3 {
+  margin-bottom: 16px;
+  color: #62bdec;
+  font-size: 1.6rem;
+}
+
+.pld-card p {
+  margin: 0;
+  color: rgba(255,255,255,.72);
+  line-height: 1.85;
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width:1024px){
+
+  .pld{
+    padding:30px 7% 30px;
+  }
+
+  .pld-header{
+    margin-bottom:50px;
+  }
+
+  .pld-grid{
+    gap:24px;
+  }
+
+  .pld-card{
+    padding:32px;
+  }
+
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width:900px){
+
+  .pld{
+    padding:45px 6% 70px;
+  }
+
+  .pld-header{
+    margin-bottom:40px;
+  }
+
+  .pld-grid{
+    grid-template-columns:1fr;
+    gap:20px;
+  }
+
+  .pld-card{
+    padding:26px;
+    border-radius:18px;
+  }
+
+  .pld-card h3{
+    font-size:1.35rem;
+  }
+
+  .pld-card p{
+    font-size:.95rem;
+    line-height:1.75;
+  }
+
+}

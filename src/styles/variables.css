@@ -1,0 +1,10 @@
+:root {
+  --primary: #62bdec;
+  --dark: #020059;
+  --light: #ffffff;
+  --gray: #f4f4f4;
+
+  --container: 1400px;
+
+  --transition: all 0.4s ease;
+}

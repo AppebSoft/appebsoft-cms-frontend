@@ -1,0 +1,356 @@
+/* ==========================================
+   MANIFESTO SECTION
+========================================== */
+
+.manifesto-section {
+  position: relative;
+  width: 100%;
+  height: 240vh;
+  background: #020059;
+  overflow: hidden;
+}
+
+/* ==========================================
+   PINNED AREA
+========================================== */
+
+.manifesto-inner {
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 450px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  overflow: hidden;
+  background: #020059;
+  padding-top: 10px;
+}
+.smallTitle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 25px;
+    border-radius: 100px;
+    background: rgba(113, 40, 239, .15);
+    border: 1px solid rgba(113, 40, 239, .35);
+    color: #62bdec;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-top: 20px;}
+/* ==========================================
+   BACKGROUND WORD
+========================================== */
+
+.bg-word {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  font-size: clamp(10rem, 22vw, 26rem);
+  font-weight: 900;
+  line-height: 1;
+
+  color: rgba(255,255,255,.035);
+
+  white-space: nowrap;
+
+  user-select: none;
+  pointer-events: none;
+
+  animation: floatWord 16s ease-in-out infinite alternate;
+}
+
+@keyframes floatWord {
+
+  from {
+    transform: translate(-52%, -50%);
+  }
+
+  to {
+    transform: translate(-48%, -50%);
+  }
+
+}
+
+/* ==========================================
+   PHRASE WRAPPER
+========================================== */
+
+.phrase-container {
+
+  position: relative;
+
+  width: min(1400px, 100%);
+
+  min-height: 280px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0 6%;
+
+  z-index: 5;
+
+}
+
+/* ==========================================
+   PHRASES
+========================================== */
+
+.phrase {
+
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  color: #ffffff;
+
+  font-size: clamp(3.2rem, 7vw, 7rem);
+  font-weight: 800;
+  line-height: .95;
+  letter-spacing: -2px;
+
+  padding: 0 20px;
+
+  will-change: transform, opacity;
+
+}
+
+/* ==========================================
+   LARGE DESKTOP
+========================================== */
+
+@media (max-width:1600px){
+
+.manifesto-section{
+
+height:230vh;
+
+}
+
+}
+
+/* ==========================================
+   DESKTOP
+========================================== */
+
+@media (max-width:1400px){
+
+.manifesto-section{
+
+height:220vh;
+
+}
+
+.bg-word{
+
+font-size:24vw;
+
+}
+
+.phrase{
+
+font-size:clamp(3rem,6.5vw,6rem);
+
+}
+
+}
+
+/* ==========================================
+   LAPTOP
+========================================== */
+
+@media (max-width:1200px){
+
+.manifesto-section{
+
+height:210vh;
+
+}
+
+.bg-word{
+
+font-size:28vw;
+
+}
+
+.phrase-container{
+
+min-height:240px;
+
+padding:0 5%;
+
+}
+
+.phrase{
+
+font-size:clamp(2.8rem,6vw,5rem);
+
+}
+
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width:991px){
+
+.manifesto-section{
+
+height:200vh;
+
+}
+
+.manifesto-inner{
+
+height:100vh;
+
+}
+
+.bg-word{
+
+font-size:34vw;
+
+}
+
+.phrase-container{
+
+min-height:220px;
+
+padding:0 40px;
+
+}
+
+.phrase{
+
+font-size:clamp(2.3rem,6vw,4rem);
+
+line-height:1.05;
+
+}
+
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width:767px){
+
+.manifesto-section{
+
+height:180vh;
+
+}
+
+.manifesto-inner{
+
+height:100vh;
+
+}
+
+.bg-word{
+
+font-size:42vw;
+
+}
+
+.phrase-container{
+
+min-height:180px;
+
+padding:0 24px;
+
+}
+
+.phrase{
+
+font-size:clamp(1.8rem,8vw,2.7rem);
+
+line-height:1.15;
+
+letter-spacing:-1px;
+
+padding:0 10px;
+
+}
+
+}
+
+/* ==========================================
+   SMALL MOBILE
+========================================== */
+
+@media (max-width:480px){
+
+.manifesto-section{
+
+height:160vh;
+
+}
+
+.bg-word{
+
+font-size:48vw;
+
+}
+
+.phrase-container{
+
+min-height:150px;
+
+padding:0 18px;
+
+}
+
+.phrase{
+
+font-size:clamp(1.45rem,8vw,2rem);
+
+line-height:1.2;
+
+}
+
+}
+
+/* ==========================================
+   EXTRA SMALL DEVICES
+========================================== */
+
+@media (max-width:360px){
+
+.manifesto-section{
+
+height:150vh;
+
+}
+
+.bg-word{
+
+font-size:52vw;
+
+}
+
+.phrase{
+
+font-size:1.3rem;
+
+}
+
+}

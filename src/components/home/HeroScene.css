@@ -1,0 +1,844 @@
+/* =====================================================
+   HERO SECTION
+===================================================== */
+
+.hero-scene {
+  position: relative;
+
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background: #020059;
+
+  padding: 165px 7% 10px;
+}
+
+/* =====================================================
+   HERO CONTENT
+===================================================== */
+
+.hero-content {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.hero-tag {
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: fit-content;
+
+  color: #62bdec;
+  padding: 10px 22px;
+  border-radius: 999px;
+  background: rgba(113, 40, 239, .15);
+  border: 1px solid rgba(113, 40, 239, .45);
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  letter-spacing: 4px;
+
+  text-transform: uppercase;
+
+  margin-bottom: 18px;
+
+}
+
+.hero-content h1 {
+
+  color: #ffffff;
+
+  font-size: clamp(3.8rem, 6vw, 6.2rem);
+
+  line-height: .9;
+
+  font-weight: 800;
+
+  margin: 0;
+
+}
+
+.changing-text {
+
+  color: #62bdec;
+
+  font-size: clamp(2.8rem, 5vw, 5rem);
+
+  font-weight: 700;
+
+  line-height: 1;
+
+  margin: 12px 0 22px;
+
+  min-height: 1.2em;
+
+}
+
+.hero-content p {
+
+  max-width: 560px;
+
+  color: rgba(255, 255, 255, .72);
+
+  font-size: 1rem;
+
+  line-height: 1.75;
+
+  margin: 0;
+
+}
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.hero-buttons {
+
+  display: flex;
+
+  gap: 18px;
+
+  margin-top: 32px;
+
+}
+
+.primary-btn1,
+.secondary-btn {
+
+  height: 52px;
+
+  padding: 0 30px;
+
+  border-radius: 999px;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: .35s;
+
+}
+
+.primary-btn1 {
+
+  background: #7128ef;
+
+  color: white;
+
+  border: none;
+
+}
+
+.primary-btn1:hover {
+
+  transform: translateY(-3px);
+  background: #fff;
+  color: #7128ef;
+
+}
+
+.secondary-btn {
+
+  background: transparent;
+
+  color: white;
+
+  border: 1px solid rgba(255, 255, 255, .18);
+
+}
+
+.secondary-btn:hover {
+
+  background: rgba(255, 255, 255, .08);
+
+}
+
+/* =====================================================
+   STATS
+===================================================== */
+
+.hero-stats {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 50px;
+
+  margin-top: 24px;
+
+  margin-bottom: 0;
+
+}
+
+.hero-stats div {
+
+  display: flex;
+
+  flex-direction: column;
+
+}
+
+.hero-stats h3 {
+
+  color: white;
+
+  font-size: 1.75rem;
+
+  margin: 0;
+
+}
+
+.hero-stats span {
+
+  color: rgba(255, 255, 255, .65);
+
+  margin-top: 4px;
+
+  font-size: .95rem;
+
+}
+
+/* =====================================================
+   BLOBS
+===================================================== */
+
+.blob {
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+}
+
+.blob-1 {
+
+  width: 620px;
+
+  height: 620px;
+
+  right: -170px;
+
+  top: -140px;
+
+  background: #62bdec;
+
+  filter: blur(180px);
+
+}
+
+.blob-2 {
+
+  width: 430px;
+
+  height: 430px;
+
+  left: -120px;
+
+  bottom: -120px;
+
+  background: #62bdec;
+
+  filter: blur(160px);
+
+}
+
+/* =====================================================
+   FLOATING CARDS
+===================================================== */
+
+.floating-card {
+
+  position: absolute;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  width: 220px;
+
+  height: 130px;
+
+  color: white;
+
+  border-radius: 24px;
+
+  backdrop-filter: blur(20px);
+
+  background: rgba(255, 255, 255, .05);
+
+  border: 1px solid rgba(255, 255, 255, .08);
+
+}
+
+.card-1 {
+
+  top: 18%;
+
+  right: 9%;
+
+}
+
+.card-2 {
+
+  top: 46%;
+
+  right: 17%;
+
+}
+
+.card-3 {
+
+  bottom: 14%;
+
+  right: 8%;
+
+}
+
+/* =====================================================
+   SCROLL INDICATOR
+===================================================== */
+
+.scroll-indicator {
+
+  position: absolute;
+
+  left: 50%;
+
+  bottom: 25px;
+
+  transform: translateX(-50%);
+
+  color: rgba(255, 255, 255, .55);
+
+  letter-spacing: 5px;
+
+  font-size: 11px;
+
+}
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media screen and (max-width: 991px) {
+
+  .hero-scene {
+
+    min-height: 80vh;
+
+    padding: 40px 30px 20px;
+
+    justify-content: center;
+
+    text-align: center;
+
+  }
+
+  .hero-content {
+    max-width: 720px;
+    margin: 15px auto 0;
+    align-items: center;
+  }
+
+  .hero-tag {
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 14px;
+
+  }
+
+  .hero-content h1 {
+
+    font-size: clamp(3rem, 7vw, 4.8rem);
+
+    line-height: 1;
+
+  }
+
+  .changing-text {
+
+    font-size: clamp(2.4rem, 6vw, 3.8rem);
+
+    margin: 10px 0 18px;
+
+  }
+
+  .hero-content p {
+
+    max-width: 600px;
+
+    font-size: 1rem;
+
+    line-height: 1.7;
+
+  }
+
+  /* =====================
+     BUTTONS
+  ===================== */
+
+  .hero-buttons {
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 16px;
+
+    margin-top: 26px;
+
+  }
+
+  .primary-btn1,
+  .secondary-btn {
+
+    min-width: 210px;
+
+    height: 50px;
+
+    padding: 0 28px;
+
+  }
+
+  /* =====================
+     STATS
+  ===================== */
+
+  .hero-stats {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 38px;
+
+    margin-top: 35px;
+
+    flex-wrap: wrap;
+
+  }
+
+  .hero-stats div {
+
+    min-width: 110px;
+
+    text-align: center;
+
+  }
+
+  .hero-stats h3 {
+
+    font-size: 1.55rem;
+
+  }
+
+  .hero-stats span {
+
+    font-size: .9rem;
+
+  }
+
+  /* =====================
+     BLOBS
+  ===================== */
+
+  .blob-1 {
+
+    width: 420px;
+
+    height: 420px;
+
+    right: -180px;
+
+    top: -120px;
+
+    filter: blur(140px);
+
+  }
+
+  .blob-2 {
+
+    width: 320px;
+
+    height: 320px;
+
+    left: -120px;
+
+    bottom: -80px;
+
+    filter: blur(120px);
+
+  }
+
+  /* =====================
+     FLOATING CARDS
+  ===================== */
+
+  .floating-card {
+
+    display: none;
+
+  }
+
+  /* =====================
+     SCROLL INDICATOR
+  ===================== */
+
+  .scroll-indicator {
+
+    bottom: 18px;
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+  }
+
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media screen and (max-width: 767px) {
+
+  .hero-scene {
+
+    min-height: auto;
+
+    padding: 150px 20px;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+  }
+
+  .hero-content {
+    width: 100%;
+    max-width: 100%;
+    align-items: center;
+    padding: 0;
+    margin-top: 10px;
+  }
+
+  .hero-tag {
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 10px;
+
+  }
+
+  .hero-content h1 {
+
+    font-size: clamp(2.2rem, 9vw, 3.2rem);
+
+    line-height: 1;
+
+    margin: 0;
+
+  }
+
+  .changing-text {
+
+    font-size: clamp(1.8rem, 7vw, 2.5rem);
+
+    line-height: 1.1;
+
+    margin: 10px 0 14px;
+
+    min-height: 2.3em;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+  }
+
+  .hero-content p {
+
+    max-width: 100%;
+
+    font-size: .95rem;
+
+    line-height: 1.6;
+
+    margin: 0;
+
+  }
+
+  /* =====================
+     BUTTONS
+  ===================== */
+
+  .hero-buttons {
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-top: 24px;
+
+  }
+
+  .primary-btn1,
+  .secondary-btn {
+
+    width: 100%;
+
+    height: 48px;
+
+    padding: 0 20px;
+
+    font-size: 14px;
+
+  }
+
+  /* =====================
+     HERO STATS
+  ===================== */
+
+  .hero-stats {
+
+    display: flex;
+
+    /* justify-content: space-between; */
+
+    align-items: center;
+
+    flex-wrap: nowrap;
+
+    width: 100%;
+
+    gap: 12px;
+
+    margin-top: 28px;
+
+  }
+
+  .hero-stats div {
+
+    flex: 1;
+
+    text-align: center;
+
+  }
+
+  .hero-stats h3 {
+
+    font-size: 1.25rem;
+
+    margin: 0;
+
+  }
+
+  .hero-stats span {
+
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: .78rem;
+
+  }
+
+  /* =====================
+     BLOBS
+  ===================== */
+
+  .blob-1 {
+
+    width: 240px;
+
+    height: 240px;
+
+    right: -120px;
+
+    top: -70px;
+
+    filter: blur(80px);
+
+  }
+
+  .blob-2 {
+
+    width: 180px;
+
+    height: 180px;
+
+    left: -90px;
+
+    bottom: -50px;
+
+    filter: blur(70px);
+
+  }
+
+  .floating-card {
+
+    display: none;
+
+  }
+
+  .scroll-indicator {
+
+    display: none;
+
+  }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media screen and (max-width: 480px) {
+
+
+  .hero-content {
+    margin-top: 5px;
+  }
+
+  .hero-content h1 {
+
+    font-size: 2rem;
+
+  }
+
+  .changing-text {
+
+    font-size: 1.55rem;
+
+  }
+
+  .hero-content p {
+
+    font-size: .88rem;
+
+    line-height: 1.55;
+
+  }
+
+  .hero-buttons {
+
+    margin-top: 20px;
+
+    gap: 10px;
+
+  }
+
+  .primary-btn1,
+  .secondary-btn {
+
+    height: 46px;
+
+    font-size: 13px;
+
+  }
+
+  .hero-stats {
+
+    gap: 8px;
+
+    margin-top: 24px;
+
+  }
+
+  .hero-stats h3 {
+
+    font-size: 1.1rem;
+
+  }
+
+  .hero-stats span {
+
+    font-size: .72rem;
+
+  }
+
+  .blob-1 {
+
+    width: 190px;
+
+    height: 190px;
+
+  }
+
+  .blob-2 {
+
+    width: 150px;
+
+    height: 150px;
+
+  }
+
+}
+
+/* ==========================================
+   SECTION GAP CONTROL
+========================================== */
+
+.hero-scene {
+  position: relative;
+  width: 100%;
+  
+
+  padding-bottom: 100px;
+}
+
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 767px) {
+
+  .hero-tag {
+        font-size: 11px;
+        letter-spacing: 2px;
+        margin-bottom: 22px;
+    }
+}

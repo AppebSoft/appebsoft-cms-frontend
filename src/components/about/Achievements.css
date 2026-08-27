@@ -1,0 +1,193 @@
+/* ==========================================
+   ACHIEVEMENTS SECTION
+========================================== */
+
+.pac {
+  position: relative;
+  padding: 35px 8% 40px;
+  background: #020059;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+/* ==========================================
+   BACKGROUND GLOW
+========================================== */
+
+.pac::before {
+  content: "";
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  top: -220px;
+  right: -250px;
+  background: radial-gradient(circle, rgba(98,189,236,.12) 0%, transparent 70%);
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+.pac::after {
+  content: "";
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  left: -180px;
+  bottom: -180px;
+  background: radial-gradient(circle, rgba(113,40,239,.10) 0%, transparent 70%);
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.pac-header {
+  position: relative;
+  z-index: 2;
+  max-width: 850px;
+  margin: 0 auto 60px;
+  text-align: center;
+}
+
+.pac-header h2 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+
+.pac-header p {
+  color: rgba(255,255,255,.7);
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+/* ==========================================
+   GRID
+========================================== */
+
+.pac-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+/* ==========================================
+   CARD
+========================================== */
+
+.pac-card {
+  position: relative;
+  overflow: hidden;
+
+  padding: 40px 30px;
+  text-align: center;
+
+  border-radius: 22px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  transition: all .4s ease;
+}
+
+.pac-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right,
+      rgba(98,189,236,.15),
+      transparent 70%);
+  opacity: 0;
+  transition: .4s;
+}
+
+.pac-card:hover::before {
+  opacity: 1;
+}
+
+.pac-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(98,189,236,.45);
+  box-shadow: 0 18px 45px rgba(98,189,236,.12);
+}
+
+.pac-card h3 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 800;
+  color: #62bdec;
+  margin-bottom: 12px;
+}
+
+.pac-card p {
+  margin: 0;
+  color: rgba(255,255,255,.72);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 1024px) {
+
+  .pac {
+    padding: 30px 7% 30px;
+  }
+
+  .pac-header {
+    margin-bottom: 50px;
+  }
+
+  .pac-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+
+  .pac-card {
+    padding: 34px 24px;
+  }
+
+  .pac-card h3 {
+    font-size: 2.8rem;
+  }
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 900px) {
+
+  .pac {
+    padding: 45px 6% 70px;
+  }
+
+  .pac-header {
+    margin-bottom: 40px;
+  }
+
+  .pac-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .pac-card {
+    padding: 28px 22px;
+    border-radius: 18px;
+  }
+
+  .pac-card h3 {
+    font-size: 2.4rem;
+  }
+
+  .pac-card p {
+    font-size: .95rem;
+  }
+}

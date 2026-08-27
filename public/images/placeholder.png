@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300" fill="none">
+  <rect width="400" height="300" fill="#1e1e2e"/>
+  <rect x="2" y="2" width="396" height="296" rx="8" stroke="#313244" stroke-width="2" stroke-dasharray="4 4"/>
+  <circle cx="200" cy="130" r="36" fill="#313244"/>
+  <path d="M185 140L195 125L205 138L215 120L225 140H185Z" fill="#89b4fa"/>
+  <circle cx="218" cy="115" r="4" fill="#f9e2af"/>
+  <text x="200" y="195" fill="#cdd6f4" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" text-anchor="middle">AppebSoft Media</text>
+</svg>

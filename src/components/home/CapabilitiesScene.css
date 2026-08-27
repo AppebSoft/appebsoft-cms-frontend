@@ -1,0 +1,58 @@
+.cap-morph {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: #020059;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+/* animated glow background */
+.cap-glow {
+  position: absolute;
+  inset: 0;
+  transition: background 0.6s ease;
+}
+
+/* center content */
+.cap-center {
+  text-align: center;
+  max-width: 800px;
+  padding: 0 20px;
+  position: relative;
+  z-index: 2;
+}
+
+/* label */
+.cap-center span {
+  letter-spacing: 6px;
+  font-size: 12px;
+  opacity: 0.8;
+  transition: color 0.6s ease;
+}
+
+/* main title morph */
+.cap-center h2 {
+  font-size: clamp(3rem, 6vw, 6rem);
+  font-weight: 800;
+  margin-top: 20px;
+  line-height: 1;
+  transition: all 0.5s ease;
+}
+
+/* subtitle */
+.cap-center h4 {
+  margin-top: 20px;
+  font-size: 20px;
+  opacity: 0.8;
+}
+
+/* description */
+.cap-center p {
+  margin-top: 18px;
+  font-size: 16px;
+  opacity: 0.6;
+  line-height: 1.6;
+}

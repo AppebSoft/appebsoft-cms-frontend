@@ -1,0 +1,716 @@
+/* =========================================================
+   SERVICE CUBE SECTION
+========================================================= */
+
+
+.service-cube-section {
+
+    position:relative;
+
+    width:100%;
+
+    min-height:auto;
+
+    background:#020059;
+
+    color:#ffffff;
+
+    overflow:hidden;
+
+    padding:35px 7% 25px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+}
+
+
+
+/* =========================================================
+   BACKGROUND WORD
+========================================================= */
+
+
+.background-word {
+
+    position:absolute;
+
+    top:50%;
+
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    font-size:22vw;
+
+    font-weight:900;
+
+    letter-spacing:-10px;
+
+    color:rgba(255,255,255,0.03);
+
+    pointer-events:none;
+
+    white-space:nowrap;
+
+}
+
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+
+.service-header {
+
+    position:relative;
+
+    z-index:2;
+
+    text-align:center;
+
+    margin-bottom:35px;
+
+}
+
+
+.service-header span {
+
+    display:block;
+
+    font-size:13px;
+
+    letter-spacing:4px;
+
+    font-weight:600;
+
+    color:#8c8cff;
+
+    margin-bottom:15px;
+
+}
+
+
+.service-header h2 {
+
+    margin:20px auto;
+
+    max-width:700px;
+
+    font-size:clamp(38px,4.5vw,64px);
+
+    line-height:1.05;
+
+    font-weight:800;
+
+    letter-spacing:-2px;
+
+}
+
+
+
+/* =========================================================
+   MAIN LAYOUT
+========================================================= */
+
+
+.service-layout {
+
+    position:relative;
+
+    z-index:2;
+
+    display:grid;
+
+    grid-template-columns:0.9fr 1.1fr;
+
+    align-items:center;
+
+    gap:50px;
+
+}
+
+
+
+/* =========================================================
+   CUBE AREA
+========================================================= */
+
+
+.cube-area {
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+
+.cube-wrapper {
+
+    width:220px;
+
+    height:220px;
+
+    perspective:900px;
+
+}
+
+
+
+.cube {
+
+    width:100%;
+
+    height:100%;
+
+    position:relative;
+
+    transform-style:preserve-3d;
+
+    cursor:grab;
+
+}
+
+
+
+.cube:active {
+
+    cursor:grabbing;
+
+}
+
+
+
+/* =========================================================
+   CUBE FACES
+========================================================= */
+
+
+.face {
+
+    position:absolute;
+
+    width:220px;
+
+    height:220px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:32px;
+
+
+    background:
+
+    linear-gradient(
+        145deg,
+        rgba(255,255,255,.22),
+        rgba(255,255,255,.05)
+    );
+
+
+    border:1px solid rgba(255,255,255,.25);
+
+
+    backdrop-filter:blur(12px);
+
+
+    box-shadow:
+
+    inset 0 0 35px rgba(255,255,255,.1),
+
+    0 20px 50px rgba(0,0,0,.4);
+
+}
+
+
+
+.face span {
+
+    font-size:60px;
+
+    font-weight:900;
+
+}
+
+
+
+.front {
+
+    transform:
+    rotateY(0deg)
+    translateZ(110px);
+
+}
+
+
+.right {
+
+    transform:
+    rotateY(90deg)
+    translateZ(110px);
+
+}
+
+
+.back {
+
+    transform:
+    rotateY(180deg)
+    translateZ(110px);
+
+}
+
+
+.left {
+
+    transform:
+    rotateY(-90deg)
+    translateZ(110px);
+
+}
+
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+
+.cube-navigation {
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    margin-top:35px;
+
+    position:relative;
+
+    z-index:5;
+
+}
+
+
+
+.nav-number {
+
+    width:48px;
+
+    height:48px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+    border:1px solid rgba(255,255,255,.35);
+
+    background:transparent;
+
+    color:#ffffff;
+
+    font-size:14px;
+
+    cursor:pointer;
+
+    transition:.3s ease;
+
+    margin-top: 30px;
+
+}
+
+
+
+.nav-number.active {
+
+    background:#ffffff;
+
+    color:#020059;
+
+}
+
+
+
+/* =========================================================
+   CONTENT PANEL
+========================================================= */
+
+
+.content-panel {
+
+    position:relative;
+
+}
+
+
+
+.content-inner {
+
+    max-width:520px;
+
+}
+
+
+
+.content-tag {
+
+    width:50px;
+
+    height:50px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:white;
+
+    color:#020059;
+
+    font-weight:700;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.service-title {
+
+    font-size:clamp(32px,3vw,48px);
+
+    line-height:1.1;
+
+    margin:0 0 20px;
+
+    font-weight:800;
+
+}
+
+
+
+.service-description {
+
+    font-size:17px;
+
+    line-height:1.7;
+
+    color:rgba(255,255,255,.75);
+
+    margin-bottom:30px;
+
+}
+
+
+
+/* =========================================================
+   FEATURES
+========================================================= */
+
+
+.service-cube-section .features-grid {
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+}
+
+.service-cube-section .feature-card {
+    padding:16px 24px !important;
+    border-radius:100px !important;
+    background:rgba(255,255,255,.05) !important;
+    border:1px solid rgba(255,255,255,.18) !important;
+    color:#ffffff !important;
+    font-size:15px !important;
+    font-weight:600 !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:flex-start !important;
+    backdrop-filter:blur(10px) !important;
+    transition:all .3s ease !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
+}
+
+.service-cube-section .feature-card:hover {
+    background:rgba(113, 40, 239, 0.35) !important;
+    border-color:rgba(113, 40, 239, 0.6) !important;
+    color:#ffffff !important;
+    transform:translateY(-3px) !important;
+    box-shadow: 0 8px 25px rgba(113, 40, 239, 0.35) !important;
+}
+
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+
+@media(max-width:1100px){
+
+
+.service-cube-section {
+
+    padding:35px 5%;
+
+}
+
+
+.service-layout {
+
+    grid-template-columns:1fr;
+
+    gap:45px;
+
+}
+
+
+
+.cube-wrapper {
+
+    width:240px;
+
+    height:240px;
+
+}
+
+
+
+.face {
+
+    width:240px;
+
+    height:240px;
+
+}
+
+
+
+.front {
+
+    transform:
+    rotateY(0deg)
+    translateZ(120px);
+
+}
+
+
+.right {
+
+    transform:
+    rotateY(90deg)
+    translateZ(120px);
+
+}
+
+
+.back {
+
+    transform:
+    rotateY(180deg)
+    translateZ(120px);
+
+}
+
+
+.left {
+
+    transform:
+    rotateY(-90deg)
+    translateZ(120px);
+
+}
+
+
+
+.content-panel {
+
+    text-align:center;
+
+}
+
+
+
+.content-inner {
+
+    margin:auto;
+
+}
+
+
+}
+
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+
+@media(max-width:600px){
+
+
+.service-cube-section {
+
+    padding:25px 16px;
+
+}
+
+
+
+.background-word {
+
+    font-size:35vw;
+
+}
+
+
+
+.service-header h2 {
+
+    font-size:36px;
+
+}
+
+
+
+.cube-wrapper {
+
+    width:180px;
+
+    height:180px;
+
+}
+
+
+
+.face {
+
+    width:180px;
+
+    height:180px;
+
+    border-radius:25px;
+
+}
+
+
+
+.face span {
+
+    font-size:50px;
+
+}
+
+
+
+.front {
+
+    transform:
+    rotateY(0deg)
+    translateZ(90px);
+
+}
+
+
+.right {
+
+    transform:
+    rotateY(90deg)
+    translateZ(90px);
+
+}
+
+
+.back {
+
+    transform:
+    rotateY(180deg)
+    translateZ(90px);
+
+}
+
+
+.left {
+
+    transform:
+    rotateY(-90deg)
+    translateZ(90px);
+
+}
+
+
+
+.cube-navigation {
+
+    margin-top:30px;
+
+}
+
+
+
+.nav-number {
+
+    width:42px;
+
+    height:42px;
+
+}
+
+
+
+.features-grid {
+
+    grid-template-columns:1fr;
+
+}
+
+
+
+.service-title {
+
+    font-size:30px;
+
+}
+
+
+
+.service-description {
+
+    font-size:15px;
+
+}
+
+
+
+    .content-tag {
+
+        margin-left:auto;
+
+        margin-right:auto;
+
+    }
+
+
+}

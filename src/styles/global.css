@@ -1,0 +1,83 @@
+@import "./variables.css";
+@import "./typography.css";
+@import "./animations.css";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  background: #020059 !important;
+}
+
+.container {
+  width: 90%;
+  max-width: var(--container);
+  margin: auto;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 92% !important;
+    max-width: 100% !important;
+  }
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+section,
+.hero-scene,
+.whoSection,
+.manifesto-section,
+.ai-command,
+.portfolio-section,
+.service-cube-section,
+.services-3d,
+.tech-section,
+.final-cta,
+.next-chapter,
+.footer {
+  position: relative;
+  border: none !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  margin-top: -1px;
+}
+
+hr,
+.divider,
+.section-divider {
+  display: none !important;
+}
+
+/* ==========================================
+   TEXT SELECTION & POINTER EVENTS FIXES
+========================================== */
+body, h1, h2, h3, h4, h5, h6, p, span, a, div, li, label, section {
+  user-select: text !important;
+  -webkit-user-select: text !important;
+}
+
+button, input, select, textarea {
+  user-select: auto !important;
+  -webkit-user-select: auto !important;
+}
+
+.glow-orb,
+.orb-1, .orb-2, .orb-violet, .orb-cyan,
+.hero-radial-grid,
+.services-bg,
+.cta-glow,
+.blob, .blob-a, .blob-b,
+.shine,
+.cta-ambient-laser {
+  pointer-events: none !important;
+}

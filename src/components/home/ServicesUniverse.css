@@ -1,0 +1,603 @@
+ /* ====================================================
+    SERVICES 3D SECTION
+==================================================== */
+
+
+.services-3d {
+
+    position:relative;
+
+    min-height:auto;
+
+    width:100%;
+
+    background:#020059;
+
+    color:#ffffff;
+
+    padding:40px 8% 40px;
+
+    perspective:1200px;
+
+    overflow:hidden;
+
+}
+
+
+
+/* ====================================================
+   BACKGROUND GLOW
+==================================================== */
+
+
+.services-3d::before {
+
+
+    content:"";
+
+    position:absolute;
+
+    width:600px;
+
+    height:600px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(98,189,236,.18),
+        transparent 70%
+    );
+
+
+    top:50%;
+
+    left:50%;
+
+    transform:
+    translate(-50%,-50%);
+
+
+    filter:blur(100px);
+
+    pointer-events:none;
+
+}
+
+
+
+
+
+/* ====================================================
+   HEADER
+==================================================== */
+
+
+.services-head {
+
+
+    position:relative;
+
+    z-index:2;
+
+
+    text-align:center;
+
+
+    margin:0 auto 70px;
+
+
+    max-width:900px;
+
+
+}
+
+
+
+.services-head span {
+
+
+    display:inline-block;
+
+
+    color:#62bdec;
+
+
+    letter-spacing:6px;
+
+
+    font-size:12px;
+
+
+    font-weight:600;
+
+
+    text-transform:uppercase;
+
+
+}
+
+
+
+.services-head h2 {
+
+
+    margin-top:18px;
+
+
+    font-size:
+    clamp(2.8rem,6vw,5.5rem);
+
+
+    font-weight:800;
+
+
+    line-height:1;
+
+
+    letter-spacing:-2px;
+
+
+}
+
+
+
+
+
+/* ====================================================
+   GRID
+==================================================== */
+
+
+.services-grid {
+
+
+    position:relative;
+
+
+    z-index:2;
+
+
+    display:grid;
+
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+
+    gap:30px;
+
+
+    max-width:1100px;
+
+
+    margin:0 auto;
+
+
+}
+
+
+
+
+
+
+
+/* ====================================================
+   CARD
+==================================================== */
+
+
+.service-card {
+
+
+    position:relative;
+
+
+    padding:30px;
+
+
+    min-height:120px;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+
+    background:
+    rgba(255,255,255,.04);
+
+
+
+    border:
+
+    1px solid rgba(255,255,255,.08);
+
+
+
+    border-radius:20px;
+
+
+
+    text-align:center;
+
+
+
+    font-size:15px;
+
+
+
+    font-weight:600;
+
+
+
+    color:#ffffff;
+
+
+
+    transform-style:preserve-3d;
+
+
+
+    transition:
+
+    transform .4s ease,
+
+    border-color .4s ease,
+
+    background .4s ease;
+
+
+}
+
+
+
+
+
+.service-card::before {
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    inset:0;
+
+
+    border-radius:20px;
+
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(98,189,236,.15),
+        transparent 60%
+    );
+
+
+    opacity:0;
+
+
+    transition:.4s;
+
+
+}
+
+
+
+
+
+.service-card:hover {
+
+
+    transform:
+    translateY(-10px);
+
+
+    border-color:#62bdec;
+
+
+    background:
+    rgba(255,255,255,.07);
+
+
+}
+
+
+
+
+.service-card:hover::before {
+
+
+    opacity:1;
+
+
+}
+
+
+
+
+
+
+
+
+/* ====================================================
+   LARGE LAPTOP
+==================================================== */
+
+
+@media(max-width:1200px){
+
+
+.services-3d {
+
+
+    padding:35px 6% 35px;
+
+
+}
+
+
+
+.services-head {
+
+
+    margin-bottom:60px;
+
+
+}
+
+
+
+.services-grid {
+
+
+    gap:25px;
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+/* ====================================================
+   TABLET
+==================================================== */
+
+
+@media(max-width:991px){
+
+
+
+.services-3d {
+
+
+    padding:30px 5% 30px;
+
+
+}
+
+
+
+.services-head {
+
+
+    margin-bottom:50px;
+
+
+}
+
+
+
+.services-head h2 {
+
+
+    font-size:3.5rem;
+
+
+}
+
+
+
+.services-grid {
+
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+
+    gap:22px;
+
+
+}
+
+
+
+.service-card {
+
+
+    padding:25px;
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+/* ====================================================
+   MOBILE
+==================================================== */
+
+
+@media(max-width:768px){
+
+
+
+.services-3d {
+
+
+    padding:55px 20px 70px;
+
+
+}
+
+
+
+.services-head {
+
+
+    margin-bottom:40px;
+
+
+}
+
+
+
+.services-head span {
+
+
+    letter-spacing:4px;
+
+
+    font-size:11px;
+
+
+}
+
+
+
+.services-head h2 {
+
+
+    font-size:2.5rem;
+
+
+    letter-spacing:-1px;
+
+
+}
+
+
+
+.services-grid {
+
+
+    grid-template-columns:1fr;
+
+
+    gap:18px;
+
+
+}
+
+
+
+.service-card {
+
+
+    min-height:90px;
+
+
+    padding:22px;
+
+
+    border-radius:18px;
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+/* ====================================================
+   SMALL MOBILE
+==================================================== */
+
+
+@media(max-width:480px){
+
+
+
+.services-3d {
+
+
+    padding:45px 16px 60px;
+
+
+}
+
+
+
+.services-head {
+
+
+    margin-bottom:32px;
+
+
+}
+
+
+
+.services-head h2 {
+
+
+    font-size:2rem;
+
+
+}
+
+
+
+.services-grid {
+
+
+    gap:15px;
+
+
+}
+
+
+
+.service-card {
+
+
+    padding:18px;
+
+
+    font-size:.9rem;
+
+
+}
+
+
+}

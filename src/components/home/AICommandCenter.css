@@ -1,0 +1,402 @@
+/* ==========================================
+   AI COMMAND CENTER
+========================================== */
+
+.ai-command {
+  position: relative;
+  overflow: hidden;
+  min-height: auto;
+  width: 100%;
+  padding: 40px 8% 40px;
+  background: #020059;
+  color: #fff;
+}
+
+/* ==========================================
+   BACKGROUND TEXT
+========================================== */
+
+.ai-bg-text {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14vw;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.03);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.ai-header {
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.ai-header span {
+  color: #62bdec;
+  font-size: 12px;
+  letter-spacing: 4px;
+}
+
+.ai-header h2 {
+  margin-top: 20px;
+  font-size: clamp(3rem, 7vw, 6rem);
+  line-height: 1;
+}
+
+.ai-header p {
+  max-width: 700px;
+  margin: 24px auto 0;
+  line-height: 1.8;
+  opacity: 0.75;
+}
+
+/* ==========================================
+   NETWORK
+========================================== */
+
+.ai-network{
+  display:grid;
+  grid-template-columns:1fr 300px 1fr;
+  grid-template-rows:230px 230px;
+  gap:30px;
+  align-items:center;
+  justify-items:stretch;
+  margin-top:40px;
+}
+
+/* ==========================================
+   CARDS
+========================================== */
+
+.node{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+
+  height:220px;
+  padding:32px;
+
+  background:rgba(64,79,228,.08);
+  border:1px solid rgba(255,255,255,.08);
+  border-bottom:none !important;
+  backdrop-filter:blur(18px);
+  border-radius:24px;
+
+  transition:
+    transform .35s ease,
+    border-color .35s ease;
+}
+
+.node:hover{
+  transform:translateY(-8px);
+  border-color:#62bdec;
+}
+
+.node h3{
+  margin-bottom:14px;
+  font-size:1.4rem;
+}
+
+.node p{
+  line-height:1.7;
+  opacity:.75;
+}
+
+.node-1{
+  grid-column:1;
+  grid-row:1;
+}
+
+.node-2{
+  grid-column:3;
+  grid-row:1;
+}
+
+.node-3{
+  grid-column:1;
+  grid-row:2;
+}
+
+.node-4{
+  grid-column:3;
+  grid-row:2;
+}
+
+/* ==========================================
+   CORE
+========================================== */
+
+.ai-core{
+  position:relative;
+
+  grid-column:2;
+  grid-row:1 / span 2;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  width:280px;
+  height:280px;
+
+  margin:auto;
+}
+
+.core-center{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  width:120px;
+  height:120px;
+
+  border-radius:50%;
+
+  background:#7128ef;
+
+  font-weight:700;
+
+  z-index:3;
+
+  box-shadow:0 0 70px rgba(1,174,248,.35);
+}
+
+.core-ring{
+  position:absolute;
+
+  width:180px;
+  height:180px;
+
+  border:1px solid rgba(113,40,239,.45);
+  border-radius:50%;
+}
+
+.ring-2{
+  width:250px;
+  height:250px;
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width:991px){
+
+.ai-command{
+    padding:40px 30px;
+}
+
+.ai-bg-text{
+    font-size:20vw;
+}
+
+.ai-header h2{
+    font-size:3rem;
+}
+
+.ai-network{
+
+    grid-template-columns:1fr 1fr;
+    grid-template-areas:
+        "card1 card2"
+        "core core"
+        "card3 card4";
+
+    gap:24px;
+    margin-top:60px;
+
+    justify-items:stretch;
+    align-items:start;
+}
+
+.node{
+    height:220px;
+}
+
+.node-1{
+    grid-area:card1;
+}
+
+.node-2{
+    grid-area:card2;
+}
+
+.node-3{
+    grid-area:card3;
+}
+
+.node-4{
+    grid-area:card4;
+}
+
+.ai-core{
+
+    grid-area:core;
+
+    width:240px;
+    height:240px;
+
+    justify-self:center;
+    align-self:center;
+
+    margin:10px auto;
+}
+
+.ai-bottom{
+    margin-top:50px;
+}
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width:767px){
+
+.ai-command{
+    padding:30px 16px;
+}
+
+.ai-bg-text{
+    display:none;
+}
+
+.ai-header h2{
+    font-size:2.3rem;
+    line-height:1.15;
+}
+
+.ai-network{
+
+    display:flex;
+    flex-direction:column;
+
+    gap:24px;
+
+    margin-top:40px;
+}
+
+.node{
+
+    width:100%;
+    height:200px;
+
+    padding:24px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.node h3{
+    font-size:1.25rem;
+}
+
+.ai-core{
+
+    position:relative;
+
+    width:210px;
+    height:210px;
+
+    margin:0 auto;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    flex-shrink:0;
+}
+
+.core-center{
+
+    width:90px;
+    height:90px;
+}
+
+.core-ring{
+
+    width:140px;
+    height:140px;
+}
+
+.ring-2{
+
+    width:200px;
+    height:200px;
+}
+
+.ai-bottom{
+
+    margin-top:40px;
+    text-align:center;
+}
+
+}
+
+/* ==========================================
+   BUTTON
+========================================== */
+
+.ai-bottom{
+  margin-top:70px;
+  text-align:center;
+}
+
+.ai-btn{
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+
+  padding:20px 40px;
+
+  background:#7128ef;
+  color:#ffffff;
+
+  border:none;
+  border-radius:999px;
+
+  text-decoration:none;
+
+  font-size:16px;
+  font-weight:700;
+  letter-spacing:.5px;
+
+  cursor:pointer;
+
+  transition:
+    transform .3s ease,
+    background .3s ease,
+    box-shadow .3s ease;
+}
+
+.ai-btn:hover{
+  background:#fff;
+  color:#7128ef;
+  transform:translateY(-5px);
+  box-shadow:0 12px 35px rgba(113,40,239,.35);
+}
+
+.ai-btn:active{
+  transform:translateY(-2px);
+}
+
+@media (max-width:767px){
+
+.ai-btn{
+  width:100%;
+  padding:18px 24px;
+}
+
+}
