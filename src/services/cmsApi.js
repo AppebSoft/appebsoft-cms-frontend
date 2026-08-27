@@ -6,7 +6,7 @@
  *   VITE_API_URL=https://dev-cms.appebsoft.com/api/v1
  */
 
-const API_BASE = import.meta.env.VITE_API_URL || 'https://api.appebsoft.com/api/v1';
+const API_BASE = import.meta.env.VITE_API_URL || 'https://dev-cms.appebsoft.com/api/v1';
 
 class ApiError extends Error {
   constructor(message, status) {
