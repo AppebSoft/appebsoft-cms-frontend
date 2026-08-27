@@ -61,7 +61,7 @@ function HeroScene() {
         </span>
 
         <h1>
-          WE BUILD
+          WE BUILDd
         </h1>
 
         <div
