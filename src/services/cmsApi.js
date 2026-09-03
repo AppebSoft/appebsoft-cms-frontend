@@ -170,23 +170,4 @@ export async function subscribeNewsletter(email) {
   });
 }
 
-// ─── CACHE HELPERS ────────────────────────────────────────────────────────────
-
-const _cache = new Map();
-
-/**
- * Cached version of apiFetch — useful for settings, navigation, services.
- * @param {string} endpoint
- * @param {number} ttlMs - cache duration in ms (default: 5 minutes)
- */
-export async function fetchCached(endpoint, ttlMs = 60 * 1000) {
-  const cached = _cache.get(endpoint);
-  if (cached && Date.now() - cached.timestamp < ttlMs) {
-    return cached.data;
-  }
-  const data = await apiFetch(endpoint);
-  _cache.set(endpoint, { data, timestamp: Date.now() });
-  return data;
-}
-
 export { ApiError };

@@ -3,7 +3,6 @@ import {
   fetchServices,
   fetchPage,
   fetchBlogPosts,
-  fetchCached,
   ApiError,
 } from "../services/cmsApi";
 
@@ -50,20 +49,5 @@ describe("cmsApi Service Layer", () => {
     });
 
     await expect(fetchPage("nonexistent")).rejects.toThrow(ApiError);
-  });
-
-  it("caches responses with fetchCached to avoid redundant network calls", async () => {
-    const mockData = { site_name: "AppebSoft" };
-    global.fetch = vi.fn().mockResolvedValue({
-      ok: true,
-      json: async () => mockData,
-    });
-
-    const firstCall = await fetchCached("/settings-test");
-    const secondCall = await fetchCached("/settings-test");
-
-    expect(firstCall).toEqual(mockData);
-    expect(secondCall).toEqual(mockData);
-    expect(global.fetch).toHaveBeenCalledTimes(1);
   });
 });
