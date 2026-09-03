@@ -27,105 +27,6 @@ import SEOHead from "../../components/common/SEOHead";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// ─── Exported fallback blogPosts array for static imports / fallback ──────────────
-export const STATIC_BLOG_POSTS = [
-  {
-    id: "seo-consulting-vs-full-service",
-    slug: "seo-consulting-vs-full-service",
-    title: "SEO Consulting vs Full-Service SEO: The Real Difference (And Which One You Need) (2026)",
-    excerpt: "Not sure whether to hire an SEO consultant or go for a full-service SEO agency? We break down the key differences, costs, and which option delivers better ROI for your business in 2026.",
-    category: "SEO",
-    readTime: "7 min read",
-    author: "Samata Nandy",
-    date: "June 15, 2026",
-    featured: true,
-    tags: ["SEO", "Consulting", "Digital Marketing", "ROI"],
-    image: "/blogs/ALL-Types-Of-Works.jpg",
-    featuredImage: "/blogs/featured-blog.jpg",
-  },
-  {
-    id: "ecommerce-seo-services",
-    slug: "ecommerce-seo-services",
-    title: "Ecommerce SEO Services: 7 Ways to Outsell Amazon & Flipkart on Google (2025)",
-    excerpt: "Discover how ecommerce SEO services can help your online store outrank marketplace giants like Amazon and Flipkart in Google search results and drive more organic sales.",
-    category: "SEO",
-    readTime: "9 min read",
-    author: "Samata Nandy",
-    date: "May 2, 2026",
-    featured: false,
-    tags: ["Ecommerce", "SEO", "Amazon", "Google Rankings"],
-    image: "/blogs/ALL-Types-Of-Works.jpg",
-  },
-  {
-    id: "local-seo-services-small-business",
-    slug: "local-seo-services-small-business",
-    title: "Local SEO for Small Businesses: 5 Steps to Rank #1 in Your City",
-    excerpt: "A practical 5-step guide to help small businesses dominate local search results and rank #1 in their city using proven local SEO strategies and Google Business Profile optimization.",
-    category: "SEO",
-    readTime: "6 min read",
-    author: "Samata Nandy",
-    date: "April 30, 2026",
-    featured: false,
-    tags: ["Local SEO", "Small Business", "Google Maps", "Rankings"],
-    image: "/blogs/ALL-Types-Of-Works.jpg",
-  },
-  {
-    id: "technical-seo-services",
-    slug: "technical-seo-services",
-    title: "Technical SEO Services: 11 Fixes That Boost Rankings Fast",
-    excerpt: "Unlock faster Google rankings with 11 technical SEO fixes that most websites overlook. From Core Web Vitals to crawlability and schema markup — this guide covers it all.",
-    category: "SEO",
-    readTime: "8 min read",
-    author: "Samata Nandy",
-    date: "April 25, 2026",
-    featured: false,
-    tags: ["Technical SEO", "Core Web Vitals", "Rankings", "Speed"],
-    image: "/blogs/ALL-Types-Of-Works.jpg",
-  },
-  {
-    id: "7-reasons-website-not-ranking",
-    slug: "7-reasons-website-not-ranking",
-    title: "7 Reasons Your Website Is Not Ranking on Google",
-    excerpt: "If your website isn't appearing on Google's first page, one of these 7 critical mistakes could be holding you back. Learn how to diagnose and fix each ranking issue today.",
-    category: "Digital Marketing",
-    readTime: "5 min read",
-    author: "Samata Nandy",
-    date: "April 18, 2026",
-    featured: false,
-    tags: ["Google Ranking", "SEO Mistakes", "Organic Traffic", "Visibility"],
-    image: "/blogs/blog-3.jpg",
-  },
-  {
-    id: "how-to-choose-web-development-company",
-    slug: "how-to-choose-web-development-company",
-    title: "How to Choose the Right Web Development Company for Your Business",
-    excerpt: "Choosing the wrong web development company can cost you thousands. This guide shows you exactly what to look for — from portfolio and tech stack to communication and pricing transparency.",
-    category: "Web Development",
-    readTime: "6 min read",
-    author: "Samata Nandy",
-    date: "April 11, 2026",
-    featured: false,
-    tags: ["Web Development", "Agency", "Business", "Tech Stack"],
-    image: "/blogs/Right-Web-Development-Company-.jpeg",
-  },
-  {
-    id: "future-of-web-development-trends-2026",
-    slug: "future-of-web-development-trends-2026",
-    title: "Future of Web Development Trends: Businesses Must Know in 2026",
-    excerpt: "Modern web development is evolving with AI, fast frameworks, and secure technologies. Explore the top trends shaping how businesses build and scale their digital presence in 2026.",
-    category: "Web Development",
-    readTime: "7 min read",
-    author: "Samata Nandy",
-    date: "April 4, 2026",
-    featured: false,
-    tags: ["Web Trends", "AI", "React", "Next.js"],
-    image: "/blogs/web-development-trends-2026.jpg",
-  },
-];
-
-export const blogPosts = STATIC_BLOG_POSTS;
-
-
 // ─── Adapters: normalize CMS data → component shape ──────────────────────────
 function adaptPost(post) {
   return {
@@ -157,8 +58,8 @@ function Blog() {
   const [subscribed, setSubscribed] = useState(false);
   const [subscribing, setSubscribing] = useState(false);
 
-  // CMS data state — defaults to static posts so content is immediately visible
-  const [blogPosts, setBlogPosts] = useState(STATIC_BLOG_POSTS);
+  // CMS data state — populated entirely from the live API
+  const [blogPosts, setBlogPosts] = useState([]);
   const [categories, setCategories] = useState(["All"]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -182,7 +83,7 @@ function Blog() {
           const adapted = rawPosts.map(adaptPost);
           setBlogPosts(adapted);
         } else {
-          setBlogPosts(STATIC_BLOG_POSTS);
+          setBlogPosts([]);
         }
 
         const catData = Array.isArray(catsRes?.data) ? catsRes.data : [];
@@ -191,8 +92,9 @@ function Blog() {
           setCategories(catNames);
         }
       } catch (e) {
-        console.warn("CMS API offline — using static blog posts:", e.message);
-        setBlogPosts(STATIC_BLOG_POSTS);
+        console.warn("CMS API request failed:", e.message);
+        setError("Unable to load blog posts right now. Please try again shortly.");
+        setBlogPosts([]);
       } finally {
         setLoading(false);
       }

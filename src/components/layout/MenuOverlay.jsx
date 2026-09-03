@@ -25,17 +25,6 @@ const FALLBACK_SERVICES_SUBPAGES = [
   { title: "Easy Integration", path: "/services/easy-integration" },
 ];
 
-const FALLBACK_BLOG_SUBPAGES = [
-  { title: "All Blogs", path: "/blog" },
-  { title: "SEO Consulting vs Full-Service", path: "/blog/seo-consulting-vs-full-service" },
-  { title: "Ecommerce SEO Services", path: "/blog/ecommerce-seo-services" },
-  { title: "Local SEO for Small Businesses", path: "/blog/local-seo-services-small-business" },
-  { title: "Technical SEO Services", path: "/blog/technical-seo-services" },
-  { title: "7 Reasons Website Not Ranking", path: "/blog/7-reasons-website-not-ranking" },
-  { title: "How to Choose Web Dev Company", path: "/blog/how-to-choose-web-development-company" },
-  { title: "Future of Web Dev 2026", path: "/blog/future-of-web-development-trends-2026" },
-];
-
 function MenuOverlay({ isOpen, setIsOpen }) {
   const { data: apiServices } = useServices();
   const [dynamicBlogSubpages, setDynamicBlogSubpages] = useState(null);
@@ -60,7 +49,7 @@ function MenuOverlay({ isOpen, setIsOpen }) {
     ? apiServices.map((s) => ({ title: s.title, path: `/services/${s.slug}` }))
     : FALLBACK_SERVICES_SUBPAGES;
 
-  const blogSubpages = dynamicBlogSubpages || FALLBACK_BLOG_SUBPAGES;
+  const blogSubpages = dynamicBlogSubpages || [{ title: "All Blogs", path: "/blog" }];
   const location = useLocation();
   const navigate = useNavigate();
   const currentPath = location.pathname;
