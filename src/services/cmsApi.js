@@ -42,12 +42,19 @@ export async function fetchRoutes() {
 }
 
 /**
- * Fetch full page content (sections + SEO) by slug.
+ * Fetch full page content (sections + SEO) by slug with automatic redirect handling.
  * @param {string} slug - e.g. 'about', 'services/web-development'
  */
 export async function fetchPage(slug) {
-  const cleanSlug = slug.replace(/^\//, '');
-  return apiFetch(`/pages/${cleanSlug}`);
+  const cleanSlug = slug.replace(/^\//, '').replace(/\/+$/, '');
+  try {
+    return await apiFetch(`/pages/${cleanSlug}`);
+  } catch (error) {
+    if (error.status === 404) {
+      return await followRedirect(cleanSlug, 'page');
+    }
+    throw error;
+  }
 }
 
 // ─── BLOG ────────────────────────────────────────────────────────────────────
@@ -62,10 +69,96 @@ export async function fetchBlogPosts(params = {}) {
 }
 
 /**
- * Fetch a single blog post by slug.
+ * Check if a slug has a redirect.
+ * @param {string} slug - The slug to check (e.g., 'blog/my-post', 'services/web-dev', 'about')
+ */
+export async function checkRedirect(slug) {
+  // Normalize: remove leading/trailing slashes, lowercase
+  const normalizedSlug = slug.replace(/^\/+/, '').replace(/\/+$/, '').toLowerCase();
+  return apiFetch(`/redirects/check/${normalizedSlug}`);
+}
+
+/**
+ * Follow redirect chain with loop detection and max hops.
+ * @param {string} slug - The original slug
+ * @param {string} type - Content type ('page', 'blog')
+ * @param {number} hops - Current hop count (internal)
+ * @param {Set<string>} visited - Visited slugs for loop detection (internal)
+ */
+async function followRedirect(slug, type, hops = 0, visited = new Set()) {
+  const MAX_HOPS = 3;
+  const normalizedSlug = slug.toLowerCase();
+  
+  // Loop detection
+  if (visited.has(normalizedSlug)) {
+    console.warn(`Redirect loop detected for ${type}: ${slug}`);
+    throw new ApiError(`Redirect loop detected for ${slug}`, 404);
+  }
+  
+  // Max hops protection
+  if (hops >= MAX_HOPS) {
+    console.warn(`Max redirect hops (${MAX_HOPS}) exceeded for ${type}: ${slug}`);
+    throw new ApiError(`Too many redirects for ${slug}`, 404);
+  }
+  
+  visited.add(normalizedSlug);
+  
+  try {
+    const redirect = await checkRedirect(slug);
+    
+    if (!redirect.redirected) {
+      throw new ApiError(`No redirect found for ${slug}`, 404);
+    }
+    
+    // Extract new slug based on type
+    let newSlug = redirect.new_slug;
+    if (type === 'blog') {
+      newSlug = newSlug.replace('blog/', '');
+    } else if (type === 'page') {
+      // Page slugs are root-level, use as-is
+      newSlug = newSlug.replace(/^\//, '');
+    }
+    
+    // Recursively follow chain
+    if (type === 'blog') {
+      return await apiFetch(`/blog/posts/${newSlug}`).catch(async (error) => {
+        if (error.status === 404) {
+          return await followRedirect(`blog/${newSlug}`, 'blog', hops + 1, visited);
+        }
+        throw error;
+      });
+    } else {
+      return await apiFetch(`/pages/${newSlug}`).catch(async (error) => {
+        if (error.status === 404) {
+          return await followRedirect(newSlug, 'page', hops + 1, visited);
+        }
+        throw error;
+      });
+    }
+  } catch (error) {
+    // If redirect check fails, don't block - just throw original 404
+    if (error.name === 'ApiError' && error.status === 404) {
+      throw error;
+    }
+    // Network/other errors - log and throw original 404
+    console.warn(`Redirect check failed for ${slug}:`, error.message);
+    throw new ApiError(`Content not found: ${slug}`, 404);
+  }
+}
+
+/**
+ * Fetch a single blog post by slug with automatic redirect handling.
  */
 export async function fetchBlogPost(slug) {
-  return apiFetch(`/blog/posts/${slug}`);
+  const cleanSlug = slug.replace(/^\//, '').replace(/\/+$/, '');
+  try {
+    return await apiFetch(`/blog/posts/${cleanSlug}`);
+  } catch (error) {
+    if (error.status === 404) {
+      return await followRedirect(`blog/${cleanSlug}`, 'blog');
+    }
+    throw error;
+  }
 }
 
 /**
