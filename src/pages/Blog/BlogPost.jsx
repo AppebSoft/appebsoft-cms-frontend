@@ -122,7 +122,15 @@ function BlogPost() {
 
   const post = livePost;
 
-  const content = (post?.sections?.length > 0) ? { intro: post.intro, sections: post.sections } : null;
+  // Determine content source priority:
+  // 1. Structured sections (Builder blocks) - highest priority
+  // 2. Plain rich text content (TiptapEditor)
+  // 3. Intro/lead paragraph
+  const hasSections = post?.sections?.length > 0;
+  const hasContent = post?.content;
+  const hasIntro = post?.intro;
+  
+  const content = hasSections ? { intro: post.intro, sections: post.sections } : null;
 
   const currentIndex = allPosts.findIndex((p) => p.slug === slug);
   const prevPost =
@@ -289,6 +297,10 @@ function BlogPost() {
               <div className="bp-article-intro">
                 <p className="bp-lead" dangerouslySetInnerHTML={{ __html: content.intro }} />
               </div>
+            ) : post?.intro ? (
+              <div className="bp-article-intro">
+                <p className="bp-lead" dangerouslySetInnerHTML={{ __html: post.intro }} />
+              </div>
             ) : (
               <div className="bp-article-intro">
                 <p className="bp-lead">{post.excerpt}</p>
@@ -362,6 +374,8 @@ function BlogPost() {
               </div>
             ) : post?.content ? (
               <div className="bp-rich-content bp-cms-content" style={{ fontSize: '1.1rem', lineHeight: '1.8' }} dangerouslySetInnerHTML={{ __html: post.content }} />
+            ) : post?.intro ? (
+              <div className="bp-rich-content bp-cms-content" style={{ fontSize: '1.1rem', lineHeight: '1.8' }} dangerouslySetInnerHTML={{ __html: post.intro }} />
             ) : (
               /* Fallback for posts without rich content */
               <div className="bp-external-notice">
