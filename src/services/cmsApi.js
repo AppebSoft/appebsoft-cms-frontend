@@ -84,6 +84,7 @@ export async function checkRedirect(slug) {
  * @param {string} type - Content type ('page', 'blog')
  * @param {number} hops - Current hop count (internal)
  * @param {Set<string>} visited - Visited slugs for loop detection (internal)
+ * @returns {Promise<{data: any, redirect?: {old_slug: string, new_slug: string, status: number}}>}
  */
 async function followRedirect(slug, type, hops = 0, visited = new Set()) {
   const MAX_HOPS = 3;
@@ -121,19 +122,22 @@ async function followRedirect(slug, type, hops = 0, visited = new Set()) {
     
     // Recursively follow chain
     if (type === 'blog') {
-      return await apiFetch(`/blog/posts/${newSlug}`).catch(async (error) => {
+      const result = await apiFetch(`/blog/posts/${newSlug}`).catch(async (error) => {
         if (error.status === 404) {
           return await followRedirect(`blog/${newSlug}`, 'blog', hops + 1, visited);
         }
         throw error;
       });
+      // Include redirect info in result
+      return { ...result, redirect: { old_slug: redirect.old_slug, new_slug: redirect.new_slug, status: redirect.status } };
     } else {
-      return await apiFetch(`/pages/${newSlug}`).catch(async (error) => {
+      const result = await apiFetch(`/pages/${newSlug}`).catch(async (error) => {
         if (error.status === 404) {
           return await followRedirect(newSlug, 'page', hops + 1, visited);
         }
         throw error;
       });
+      return { ...result, redirect: { old_slug: redirect.old_slug, new_slug: redirect.new_slug, status: redirect.status } };
     }
   } catch (error) {
     // If redirect check fails, don't block - just throw original 404

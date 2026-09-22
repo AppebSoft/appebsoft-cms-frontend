@@ -1,6 +1,6 @@
 ﻿import SEOHead from "../../components/common/SEOHead";
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import {
   ArrowLeft,
   Clock,
@@ -49,6 +49,7 @@ function FAQItem({ q, a }) {
 
 function BlogPost() {
   const { slug } = useParams();
+  const navigate = useNavigate();
   const [livePost, setLivePost] = useState(null);
   const [allPosts, setAllPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -60,6 +61,15 @@ function BlogPost() {
         const res = await fetchBlogPost(slug);
         if (res && res.data) {
           const apiData = res.data;
+          
+          // Handle client-side redirect if API returned redirect info
+          if (res.redirect && res.redirect.new_slug) {
+            const newSlug = res.redirect.new_slug.replace('blog/', '');
+            console.log(`Redirecting from ${slug} to ${newSlug}`);
+            navigate(`/blog/${newSlug}`, { replace: true });
+            return;
+          }
+          
           setLivePost({
             id: apiData.slug || slug,
             slug: apiData.slug || slug,
@@ -89,7 +99,7 @@ function BlogPost() {
       }
     }
     loadLivePost();
-  }, [slug]);
+  }, [slug, navigate]);
 
   // Fetch the full post list once, used for prev/next navigation and related posts.
   useEffect(() => {
