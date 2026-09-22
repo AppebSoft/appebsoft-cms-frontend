@@ -122,7 +122,7 @@ function BlogPost() {
 
   const post = livePost;
 
-  const content = post?.sections ? { intro: post.intro, sections: post.sections } : null;
+  const content = (post?.sections?.length > 0) ? { intro: post.intro, sections: post.sections } : null;
 
   const currentIndex = allPosts.findIndex((p) => p.slug === slug);
   const prevPost =
