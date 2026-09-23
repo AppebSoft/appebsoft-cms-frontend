@@ -86,6 +86,7 @@ function BlogPost() {
               : "",
             image: apiData.featured_image || "/blogs/ALL-Types-Of-Works.jpg",
             featuredImage: apiData.featured_image || "/blogs/ALL-Types-Of-Works.jpg",
+            featuredImageAlt: apiData.featured_image_alt || "",
             tags: apiData.tags ? apiData.tags.map((t) => t.name) : [],
           });
         } else {
@@ -114,6 +115,7 @@ function BlogPost() {
             category: p.category?.name || "General",
             image: p.featured_image || "/blogs/ALL-Types-Of-Works.jpg",
             featuredImage: p.featured_image || "/blogs/ALL-Types-Of-Works.jpg",
+            featuredImageAlt: p.featured_image_alt || "",
           }))
         );
       })
@@ -200,7 +202,7 @@ function BlogPost() {
   }
 
   const featureImage = post.image;
-  const featureImageAlt = post.title;
+  const featureImageAlt = post.featuredImageAlt || post.title;
 
   return (
     <div className="blogpost-page">

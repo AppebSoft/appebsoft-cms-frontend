@@ -44,6 +44,7 @@ function adaptPost(post) {
     tags: post.tags ? post.tags.map((t) => t.name) : [],
     image: post.featured_image || "/blogs/ALL-Types-Of-Works.jpg",
     featuredImage: post.featured_image || "/blogs/ALL-Types-Of-Works.jpg",
+    featuredImageAlt: post.featured_image_alt || "",
     externalUrl: null, // served from our own API now
   };
 }
@@ -230,7 +231,7 @@ function Blog() {
                   <div className="featured-image-wrap">
                     <img
                       src={featuredPost.featuredImage}
-                      alt={featuredPost.title}
+                      alt={featuredPost.featuredImageAlt || featuredPost.title}
                       className="featured-img"
                       onError={(e) => {
                         if (!e.currentTarget.src.includes("ALL-Types-Of-Works.jpg")) {
@@ -306,7 +307,7 @@ function Blog() {
                         <div className="card-image-wrap">
                           <img
                             src={post.image}
-                            alt={post.title}
+                            alt={post.featuredImageAlt || post.title}
                             className="card-feature-img"
                             onError={(e) => {
                               if (!e.currentTarget.src.includes("ALL-Types-Of-Works.jpg")) {
