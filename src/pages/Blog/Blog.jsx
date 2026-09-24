@@ -24,6 +24,7 @@ import Footer from "../../components/layout/Footer";
 import FloatingButtons from "../../components/layout/FloatingButtons";
 import "./Blog.css";
 import SEOHead from "../../components/common/SEOHead";
+import { generateBlogListingSchema } from "../../utils/blogSchema";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -40,6 +41,7 @@ function adaptPost(post) {
     date: post.published_at
       ? new Date(post.published_at).toLocaleDateString("en-IN", { year: "numeric", month: "long", day: "numeric" })
       : "",
+    publishedAt: post.published_at, // ISO string for schema
     featured: post.is_featured,
     tags: post.tags ? post.tags.map((t) => t.name) : [],
     image: post.featured_image || "/blogs/ALL-Types-Of-Works.jpg",
@@ -64,6 +66,7 @@ function Blog() {
   const [categories, setCategories] = useState(["All"]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [blogSchema, setBlogSchema] = useState(null);
 
   const POSTS_PER_PAGE = 6;
 
@@ -83,14 +86,19 @@ function Blog() {
         if (rawPosts.length > 0) {
           const adapted = rawPosts.map(adaptPost);
           setBlogPosts(adapted);
+          
+          const catData = Array.isArray(catsRes?.data) ? catsRes.data : [];
+          if (catData.length > 0) {
+            const catNames = ["All", ...catData.map((c) => c.name)];
+            setCategories(catNames);
+            
+            // Generate Blog schema for SEO after categories are loaded
+            const currentUrl = `${window.location.origin}/blog`;
+            const schema = generateBlogListingSchema(adapted, catNames, currentUrl);
+            setBlogSchema(schema);
+          }
         } else {
           setBlogPosts([]);
-        }
-
-        const catData = Array.isArray(catsRes?.data) ? catsRes.data : [];
-        if (catData.length > 0) {
-          const catNames = ["All", ...catData.map((c) => c.name)];
-          setCategories(catNames);
         }
       } catch (e) {
         console.warn("CMS API request failed:", e.message);
@@ -147,6 +155,7 @@ function Blog() {
         title="Blog & Insights | Web, AI & Tech Trends"
         description="Read the latest insights, tutorials, and engineering blog posts on Web Development, AI, SEO, and Software Architecture by AppebSoft."
         keywords="AppebSoft Blog, Tech Insights, Web Dev Tutorials, SEO Guides, AI Blogs"
+        schema={blogSchema}
       />
 
       <Navbar />

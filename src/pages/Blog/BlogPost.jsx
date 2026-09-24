@@ -20,6 +20,7 @@ import Footer from "../../components/layout/Footer";
 import FloatingButtons from "../../components/layout/FloatingButtons";
 import { fetchBlogPost, fetchBlogPosts } from "../../services/cmsApi";
 import "./BlogPost.css";
+import { generateBlogPostingSchema, generateBreadcrumbSchema } from "../../utils/blogSchema";
 
 // Inject white background override for this page
 const styleOverride = document.createElement('style');
@@ -53,6 +54,8 @@ function BlogPost() {
   const [livePost, setLivePost] = useState(null);
   const [allPosts, setAllPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [postSchema, setPostSchema] = useState(null);
+  const [breadcrumbSchema, setBreadcrumbSchema] = useState(null);
 
   useEffect(() => {
     async function loadLivePost() {
@@ -80,15 +83,27 @@ function BlogPost() {
             sections: apiData.sections?.length ? apiData.sections : null,
             category: apiData.category?.name || "General",
             readTime: `${apiData.read_time_minutes || 5} min read`,
+            read_time_minutes: apiData.read_time_minutes || 5,
             author: apiData.author?.name || "AppebSoft Team",
             date: apiData.published_at
               ? new Date(apiData.published_at).toLocaleDateString("en-IN", { year: "numeric", month: "long", day: "numeric" })
               : "",
+            publishedAt: apiData.published_at,
+            updatedAt: apiData.updated_at,
             image: apiData.featured_image || "/blogs/ALL-Types-Of-Works.jpg",
             featuredImage: apiData.featured_image || "/blogs/ALL-Types-Of-Works.jpg",
             featuredImageAlt: apiData.featured_image_alt || "",
             tags: apiData.tags ? apiData.tags.map((t) => t.name) : [],
           });
+          
+          // Generate BlogPosting schema for SEO
+          const currentUrl = window.location.href;
+          const schema = generateBlogPostingSchema(livePost, allPosts, currentUrl);
+          setPostSchema(schema);
+          
+          // Generate Breadcrumb schema
+          const breadcrumb = generateBreadcrumbSchema(livePost, currentUrl);
+          setBreadcrumbSchema(breadcrumb);
         } else {
           setLivePost(null);
         }
@@ -210,29 +225,7 @@ function BlogPost() {
         title={post.title}
         description={post.excerpt}
         keywords={`${post.category}, AppebSoft Blog, SEO, Web Development`}
-        schema={{
-          "@context": "https://schema.org",
-          "@type": "BlogPosting",
-          "headline": post.title,
-          "description": post.excerpt,
-          "author": {
-            "@type": "Organization",
-            "name": "AppebSoft"
-          },
-          "publisher": {
-            "@type": "Organization",
-            "name": "AppebSoft",
-            "logo": {
-              "@type": "ImageObject",
-              "url": "https://appebsoft.com/logo-color.png"
-            }
-          },
-          "datePublished": post.date,
-          "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": `https://appebsoft.com/blog/${slug}`
-          }
-        }}
+        schema={postSchema}
       />
       <Navbar />
 
