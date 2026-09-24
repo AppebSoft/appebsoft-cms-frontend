@@ -4,6 +4,10 @@
   "outputDirectory": "dist",
   "rewrites": [
     {
+      "source": "/test-rewrite",
+      "destination": "/index.html"
+    },
+    {
       "source": "/blog/:path*",
       "destination": "/index.html"
     },
