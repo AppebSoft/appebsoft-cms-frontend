@@ -71,18 +71,23 @@ function SEOHead({
     }
     canonicalEl.setAttribute("href", pageUrl);
 
-    // 7. Dynamic JSON-LD Schema
+    // 7. Dynamic JSON-LD Schema (supports single object or array for @graph)
     const scriptId = "dynamic-jsonld-schema";
     let scriptEl = document.getElementById(scriptId);
 
-    if (schema) {
+    // Normalize schema to array
+    const schemas = Array.isArray(schema) ? schema : (schema ? [schema] : []);
+
+    if (schemas.length > 0) {
       if (!scriptEl) {
         scriptEl = document.createElement("script");
         scriptEl.id = scriptId;
         scriptEl.type = "application/ld+json";
         document.head.appendChild(scriptEl);
       }
-      scriptEl.textContent = JSON.stringify(schema);
+      // If multiple schemas, wrap in @graph
+      const schemaOutput = schemas.length === 1 ? schemas[0] : { "@context": "https://schema.org", "@graph": schemas };
+      scriptEl.textContent = JSON.stringify(schemaOutput);
     } else if (scriptEl) {
       // Remove stale schema from prior page if current page doesn't define one
       scriptEl.remove();

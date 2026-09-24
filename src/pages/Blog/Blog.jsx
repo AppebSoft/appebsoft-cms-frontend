@@ -24,7 +24,7 @@ import Footer from "../../components/layout/Footer";
 import FloatingButtons from "../../components/layout/FloatingButtons";
 import "./Blog.css";
 import SEOHead from "../../components/common/SEOHead";
-import { generateBlogListingSchema } from "../../utils/blogSchema";
+import { generateBlogListingSchema, generateOrganizationSchema } from "../../utils/blogSchema";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -94,8 +94,9 @@ function Blog() {
             
             // Generate Blog schema for SEO after categories are loaded
             const currentUrl = `${window.location.origin}/blog`;
-            const schema = generateBlogListingSchema(adapted, catNames, currentUrl);
-            setBlogSchema(schema);
+            const blogSchema = generateBlogListingSchema(adapted, catNames, currentUrl);
+            const orgSchema = generateOrganizationSchema();
+            setBlogSchema([blogSchema, orgSchema]);
           }
         } else {
           setBlogPosts([]);
@@ -155,7 +156,7 @@ function Blog() {
         title="Blog & Insights | Web, AI & Tech Trends"
         description="Read the latest insights, tutorials, and engineering blog posts on Web Development, AI, SEO, and Software Architecture by AppebSoft."
         keywords="AppebSoft Blog, Tech Insights, Web Dev Tutorials, SEO Guides, AI Blogs"
-        schema={blogSchema}
+        schema={[blogSchema, generateOrganizationSchema()].filter(Boolean)}
       />
 
       <Navbar />

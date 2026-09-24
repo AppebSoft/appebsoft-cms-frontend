@@ -9,6 +9,46 @@ const ORG_LOGO = `${SITE_URL}/logo-color.png`;
 const DEFAULT_OG_IMAGE = `${SITE_URL}/assets/og-preview.png`;
 
 /**
+ * Generate Organization schema (global site schema)
+ * @returns {Object} Organization schema object
+ */
+export function generateOrganizationSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: ORG_NAME,
+    legalName: 'AppebSoft Pvt. Ltd.',
+    url: SITE_URL,
+    logo: ORG_LOGO,
+    description: 'AppebSoft is a leading digital product studio providing enterprise web development, mobile apps, AI solutions, and digital transformation services.',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Uttarpara',
+      addressRegion: 'West Bengal',
+      addressCountry: 'IN',
+    },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: '+91-9836717849',
+      contactType: 'customer service',
+      email: 'contact@appebsoft.com',
+      availableLanguage: ['English', 'Hindi', 'Bengali'],
+    },
+    knowsAbout: [
+      'Web Development',
+      'Mobile App Development',
+      'AI Chatbots',
+      'Smart Analytics',
+      'Process Automation',
+      'Enterprise Software',
+      'UI/UX Design',
+      'Search Engine Optimization',
+      'Digital Transformation',
+    ],
+  };
+}
+
+/**
  * Generate Blog schema for the blog listing page
  * @param {Array} posts - Array of adapted blog posts
  * @param {Array} categories - Array of category names

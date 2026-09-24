@@ -20,7 +20,7 @@ import Footer from "../../components/layout/Footer";
 import FloatingButtons from "../../components/layout/FloatingButtons";
 import { fetchBlogPost, fetchBlogPosts } from "../../services/cmsApi";
 import "./BlogPost.css";
-import { generateBlogPostingSchema, generateBreadcrumbSchema } from "../../utils/blogSchema";
+import { generateBlogPostingSchema, generateBreadcrumbSchema, generateOrganizationSchema } from "../../utils/blogSchema";
 
 // Inject white background override for this page
 const styleOverride = document.createElement('style');
@@ -227,7 +227,7 @@ function BlogPost() {
         title={post.title}
         description={post.excerpt}
         keywords={`${post.category}, AppebSoft Blog, SEO, Web Development`}
-        schema={postSchema}
+        schema={[postSchema, breadcrumbSchema, generateOrganizationSchema()].filter(Boolean)}
       />
       <Navbar />
 
