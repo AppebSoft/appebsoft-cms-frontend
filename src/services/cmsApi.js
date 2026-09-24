@@ -18,6 +18,7 @@ class ApiError extends Error {
 
 async function apiFetch(endpoint, options = {}) {
   const url = `${API_BASE}${endpoint}`;
+  console.log('[CMS API] Fetching:', url); // DEBUG
   const res = await fetch(url, {
     cache: 'no-cache', // always revalidate so Laravel changes appear immediately
     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -25,6 +26,7 @@ async function apiFetch(endpoint, options = {}) {
   });
   if (!res.ok) {
     const body = await res.json().catch(() => ({}));
+    console.error('[CMS API] Error:', res.status, url, body); // DEBUG
     throw new ApiError(body.message || `API error ${res.status}`, res.status);
   }
   return res.json();
