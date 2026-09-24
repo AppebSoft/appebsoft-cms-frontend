@@ -73,7 +73,7 @@ function BlogPost() {
             return;
           }
           
-          setLivePost({
+          const postData = {
             id: apiData.slug || slug,
             slug: apiData.slug || slug,
             title: apiData.title,
@@ -94,15 +94,17 @@ function BlogPost() {
             featuredImage: apiData.featured_image || "/blogs/ALL-Types-Of-Works.jpg",
             featuredImageAlt: apiData.featured_image_alt || "",
             tags: apiData.tags ? apiData.tags.map((t) => t.name) : [],
-          });
+          };
           
-          // Generate BlogPosting schema for SEO
+          setLivePost(postData);
+          
+          // Generate BlogPosting schema for SEO (use postData directly, not livePost state)
           const currentUrl = window.location.href;
-          const schema = generateBlogPostingSchema(livePost, allPosts, currentUrl);
+          const schema = generateBlogPostingSchema(postData, allPosts, currentUrl);
           setPostSchema(schema);
           
           // Generate Breadcrumb schema
-          const breadcrumb = generateBreadcrumbSchema(livePost, currentUrl);
+          const breadcrumb = generateBreadcrumbSchema(postData, currentUrl);
           setBreadcrumbSchema(breadcrumb);
         } else {
           setLivePost(null);
