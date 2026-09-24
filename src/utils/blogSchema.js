@@ -9,6 +9,46 @@ const ORG_LOGO = `${SITE_URL}/logo-color.png`;
 const DEFAULT_OG_IMAGE = `${SITE_URL}/assets/og-preview.png`;
 
 /**
+ * Flatten a post's structured "sections" (builder blocks) into plain text.
+ * Mirrors the block types rendered in BlogPost.jsx so word counts reflect
+ * the actual visible article body, not just the short excerpt/intro.
+ * @param {Array} sections - post.sections array from the CMS
+ * @returns {string} plain text extracted from all blocks, HTML tags stripped
+ */
+function extractTextFromSections(sections) {
+  if (!Array.isArray(sections)) return '';
+
+  const stripHtml = (html) => (html || '').replace(/<[^>]*>/g, ' ');
+
+  return sections
+    .map((section) => {
+      switch (section?.type) {
+        case 'heading':
+          return section.text || '';
+        case 'text':
+          return stripHtml(section.html);
+        case 'stats-box':
+          return [
+            section.title || '',
+            ...(section.stats || []).map((s) => `${s.value || ''} ${s.label || ''}`),
+          ].join(' ');
+        case 'step':
+          return [section.title || '', stripHtml(section.html)].join(' ');
+        case 'quick-wins':
+          return [section.title || '', ...(section.items || [])].join(' ');
+        case 'faq':
+          return [
+            section.title || '',
+            ...(section.items || []).flatMap((item) => [item.q || '', stripHtml(item.a)]),
+          ].join(' ');
+        default:
+          return '';
+      }
+    })
+    .join(' ');
+}
+
+/**
  * Generate Organization schema (global site schema)
  * @returns {Object} Organization schema object
  */
@@ -127,9 +167,15 @@ export function generateBlogPostingSchema(post, allPosts, currentUrl) {
     ? new Date(post.updatedAt).toISOString()
     : publishedDate;
 
-  // Estimate word count from content/excerpt
-  const textContent = post.content || post.intro || post.excerpt || '';
-  const wordCount = textContent ? Math.round(textContent.replace(/<[^>]*>/g, '').split(/\s+/).length) : 0;
+  // Estimate word count from the actual rendered body: structured sections
+  // (builder blocks) take priority since that's what most posts use, falling
+  // back to plain content/intro/excerpt for posts stored the older way.
+  const textContent = post.sections?.length
+    ? [post.intro, extractTextFromSections(post.sections)].filter(Boolean).join(' ')
+    : post.content || post.intro || post.excerpt || '';
+  const wordCount = textContent
+    ? textContent.replace(/<[^>]*>/g, ' ').trim().split(/\s+/).filter(Boolean).length
+    : 0;
 
   // Convert read_time_minutes to ISO 8601 duration (e.g., PT7M)
   const readTimeMinutes = post.read_time_minutes || 5;
